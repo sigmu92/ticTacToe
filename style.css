@@ -1,0 +1,14 @@
+.page {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-image: url("background.jpg");
+}
+
+.title {
+  font-family:"Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+  font-size: 40px;
+  color: whitesmoke;
+  font-weight: bold;
+
+}
