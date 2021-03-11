@@ -24,7 +24,11 @@ const Gameboard = (() => {
 const Player = (name, symbol) => {
   const getName = () => name;
   const getSymbol = () => symbol;
-  return {getName, getSymbol}
+  const setName = (name) => {
+    this.name = name
+  }
+
+  return {getName, getSymbol, setName}
 }
 
 
@@ -111,6 +115,9 @@ const Game = (() => {
 window.addEventListener('load', Game.newGame)
 const tiles = document.querySelectorAll(".space")
 const resetGame = document.getElementById('reset')
+const player1But = document.getElementById('player1')
+const player2But = document.getElementById('player2')
+
 tiles.forEach(tile => tile.addEventListener("click", (event) => {
   Game.playTile(event.target)
 }))

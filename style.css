@@ -2,18 +2,17 @@
   font-family: Roboto;
   src: url(Roboto-Light.ttf);
   font-weight: bold;
-  
 }
 
 :root {
   --main-text-color: rgb(0, 247, 255);
-  --main-font: 'Roboto,sans-serif;
+  --main-font: Roboto;
 }
 
 .page {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: inline-row;
+  flex-direction: row;
   justify-content: center;
   background-color: black;
 }
@@ -65,7 +64,7 @@
 .button {
   padding: 0.35em 1.2em;
   border:0.1em solid var(--main-text-color);
-  margin: 0 0.3em 0.3em 0;
+  margin: 1em 1em 1em 1em;
   border-radius: 0.12em;
   box-sizing: border-box;
   text-decoration: none;
@@ -80,4 +79,21 @@
 .button:hover {
   color:black;
   background-color: var(--main-text-color);
+}
+
+.input {
+  color: var(--main-text-color);
+  font-family: var(--main-font);
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 1em;
+}
+
+.textBox {
+  border-radius: .4em;
+  margin-top: -.75em;
+  color: var(--main-text-color); 
+  background-color: black;
+  border-color: var(--main-text-color);
+  text-align: center;
 }
