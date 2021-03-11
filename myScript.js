@@ -34,20 +34,22 @@ const Game = (() => {
   const winDiv = document.getElementById("winner")
   const turnDiv = document.getElementById("turn")
   const players = [player1, player2];
+  let board = [];
   let turn = 0;
 
   const newGame = () => {
     turn = 0; 
-    let board = Gameboard.newBoard();
+    board = Gameboard.newBoard();
     Gameboard.displayController(board);
     turnDiv.textContent = `It's ${players[turn].getName()}'s turn!`;
     winDiv.textContent = '';
   }
 
   const checkWinner = (arr) => {
+    console.log(arr)
     if (arr[0] == arr[1] && arr[1] == arr[2] && arr[0] != '' ||
         arr[3] == arr[4] && arr[4] == arr[5] && arr[3] != '' ||
-        arr[6] == arr[7] && arr[7] == arr[8] && arr[5] != '' ||
+        arr[6] == arr[7] && arr[7] == arr[8] && arr[6] != '' ||
         arr[0] == arr[3] && arr[3] == arr[6] && arr[0] != '' ||
         arr[1] == arr[4] && arr[4] == arr[7] && arr[1] != '' ||
         arr[2] == arr[5] && arr[5] == arr[8] && arr[2] != '' ||
@@ -62,7 +64,8 @@ const Game = (() => {
   
   const playTile = (tile) => {
     if (Game.checkFree(tile)){
-      const board = Gameboard.getBoard()
+      board = Gameboard.getBoard()
+      
       board[parseInt(tile.dataset.spot)] = players[turn].getSymbol();
       Gameboard.displayController(board);
       if (Game.checkWinner(board)){
@@ -111,3 +114,4 @@ const resetGame = document.getElementById('reset')
 tiles.forEach(tile => tile.addEventListener("click", (event) => {
   Game.playTile(event.target)
 }))
+resetGame.addEventListener("click", Game.newGame)

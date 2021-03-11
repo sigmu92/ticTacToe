@@ -1,6 +1,13 @@
+@font-face{
+  font-family: Roboto;
+  src: url(Roboto-Light.ttf);
+  font-weight: bold;
+  
+}
+
 :root {
   --main-text-color: rgb(0, 247, 255);
-  --main-font: 'Roboto',sans-serif;
+  --main-font: 'Roboto,sans-serif;
 }
 
 .page {
@@ -63,8 +70,14 @@
   box-sizing: border-box;
   text-decoration: none;
   font-family: var(--main-font);
-  font-weight: 300;
+  font-size: 1em;
   color: var(--main-text-color); 
   text-align: center;
-  transition: all 0.2s
+  transition: all 0.05s;
+  background-color: black;
+}
+
+.button:hover {
+  color:black;
+  background-color: var(--main-text-color);
 }
