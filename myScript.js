@@ -25,7 +25,7 @@ const Player = (name, symbol) => {
   const getName = () => name;
   const getSymbol = () => symbol;
   const setName = (name) => {
-    this.name = name
+    Player.name = name
   }
 
   return {getName, getSymbol, setName}
@@ -33,15 +33,18 @@ const Player = (name, symbol) => {
 
 
 const Game = (() => {
-  const player1 = Player('Max', "X")
-  const player2 = Player('Meg', 'O')
+  let player1
+  let player2
   const winDiv = document.getElementById("winner")
   const turnDiv = document.getElementById("turn")
-  const players = [player1, player2];
+  let players = [player1, player2];
   let board = [];
   let turn = 0;
 
   const newGame = () => {
+    player1 = Player('Max', "X")
+    player2 = Player('Meg', 'O')
+    players = [player1,player2]
     turn = 0; 
     board = Gameboard.newBoard();
     Gameboard.displayController(board);
@@ -80,6 +83,7 @@ const Game = (() => {
         if(Game.checkDraw(board)){
           winDiv.textContent = "It's a draw!"
           turnDiv.textContent = ""
+          return
         }
         else{
           if(turn == 0){
@@ -101,24 +105,52 @@ const Game = (() => {
     return false
   }
 
+  const setPlayerOne = (name) => {
+    player1 = Player(name,"X")
+    players[0]=player1
+    turnDiv.textContent = `It's ${players[turn].getName()}'s turn!`
+
+  }
+
+  const setPlayerTwo = (name) => {
+    player2 = Player(name,"O")
+    players[1]=player2
+    turnDiv.textContent = `It's ${players[turn].getName()}'s turn!`
+  }
+
+
   return{
     newGame,
     playTile,
     checkWinner,
     checkDraw,
-    checkFree
+    checkFree,
+    setPlayerOne,
+    setPlayerTwo
   }
 })();
 
 
 
-window.addEventListener('load', Game.newGame)
-const tiles = document.querySelectorAll(".space")
-const resetGame = document.getElementById('reset')
-const player1But = document.getElementById('player1')
-const player2But = document.getElementById('player2')
+window.addEventListener('load', Game.newGame);
+const tiles = document.querySelectorAll(".space");
+const resetGame = document.getElementById('reset');
+const player1But = document.getElementById('player1');
+const player1Form = document.getElementById('p1');
+const player2But = document.getElementById('player2');
+const player2Form = document.getElementById('p2');
 
 tiles.forEach(tile => tile.addEventListener("click", (event) => {
   Game.playTile(event.target)
 }))
 resetGame.addEventListener("click", Game.newGame)
+
+player1But.addEventListener("click", (event) => {
+  Game.setPlayerOne(player1Form.value);
+  player1Form.value= '';
+})
+
+player2But.addEventListener("click", (event) => {
+  Game.setPlayerTwo(player2Form.value)
+  player2Form.value = ''
+})

@@ -91,7 +91,8 @@
 
 .textBox {
   border-radius: .4em;
-  margin-top: -.75em;
+  height: 1.5em;
+  margin-top: 1.75em;
   color: var(--main-text-color); 
   background-color: black;
   border-color: var(--main-text-color);
